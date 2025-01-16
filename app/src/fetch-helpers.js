@@ -14,7 +14,7 @@ export const fetchPokemon = async (pokemonName) => {
     obj.name = pokemonData.name;
 
     obj.sprite =
-      pokemonData["sprites"]["other"]["official-artwork"]["front_default"];
+      pokemonData['sprites']['other']['official-artwork']['front_default'];
 
     obj.types = [];
     pokemonData.types.forEach((pokeType) => {
@@ -24,7 +24,7 @@ export const fetchPokemon = async (pokemonName) => {
     console.log(obj);
     return obj;
   } catch (error) {
-    console.log("Error caught! " + error.message);
+    console.log('Error caught! ' + error.message);
     return null;
   }
 };
@@ -44,7 +44,7 @@ export const fetchPokemonType = async (typeName) => {
     console.log(obj);
     return obj;
   } catch (error) {
-    console.log("Error caught! " + error.message);
+    console.log('Error caught! ' + error.message);
     return null;
   }
 };

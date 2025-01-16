@@ -6,16 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokemon Type Chart</title>
   </head>
-  <body>
-    <h1>PokeSearch!</h1>
-    <form for="poke-search" action="" id="pokeSearch">
-      <label for="pokemonName"
-        >Search:
-        <input type="text" id="pokemonName" placeholder="Who's that Pokemon?" />
-      </label>
-      <button>Catch!</button>
-    </form>
-    <div id="app"></div>
-    <script type="module" src="./src/main.js"></script>
-  </body>
+  <div id="app">
+    <body>
+      <h1>PokeSearch!</h1>
+      <form for="poke-search" action="" id="pokeSearch">
+        <label for="pokemonName"
+          >Search:
+          <input
+            type="text"
+            id="pokemonName"
+            placeholder="Who's that Pokemon?"
+          />
+        </label>
+        <button>Catch!</button>
+      </form>
+      <div>
+        <dialog id="poke-Modal"></dialog>
+      </div>
+      <div id="poke-list">
+        <ul id="poke-list"></ul>
+      </div>
+      <script type="module" src="./src/main.js"></script>
+    </body>
+  </div>
 </html>

@@ -1,8 +1,15 @@
-import './style.css';
-import { fetchPokemon } from './fetch-helpers';
+import "./style.css";
+import { fetchPokemon, fetchPokemonList } from "./fetch-helpers";
 
 const main = () => {
   fetchPokemon();
 };
 
-main();
+//main();
+
+//v2
+const main2 = () => {
+  fetchPokemonList();
+};
+
+main2();

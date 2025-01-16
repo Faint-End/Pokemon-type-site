@@ -1,5 +1,5 @@
 import "./style.css";
-import { fetchPokemon } from "./fetch-helpers";
+import { fetchPokemon, fetchPokemonType } from "./fetch-helpers";
 
 const main = () => {
   const pokeSearch = document.getElementById("pokeSearch");

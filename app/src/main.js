@@ -1,11 +1,12 @@
-import "./style.css";
-import { fetchPokemon, fetchPokemonList } from "./fetch-helpers";
+import './style.css';
+import { fetchPokemon, fetchPokemonList } from './fetch-helpers';
 
 const main = () => {
-  fetchPokemon();
+  const pokeSearch = document.getElementById('pokeSearch');
+  pokeSearch.addEventListener('submit', fetchPokemon);
 };
 
-//main();
+main();
 
 //v2
 const main2 = () => {

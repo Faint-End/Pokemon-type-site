@@ -1,41 +1,50 @@
-export const fetchPokemon = async (e) => {
-  e.preventDefault();
-
+export const fetchPokemon = async (pokemonName) => {
   try {
-    const pokemonName = document
-      .getElementById('pokemonName')
-      .value.toLowerCase();
     const response = await fetch(
       `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
     );
 
     if (!response.ok) {
-      throw new Error(
-        `Couldn't find your Pokemon! ${response.status} ${response.statusText}`
-      );
+      throw Error(`Fetch failed. ${response.status} ${response.statusText}`);
     }
-    const data = await response.json();
+    const pokemonData = await response.json();
+    console.log(pokemonData);
 
-    console.log(data);
+    const obj = {};
+    obj.name = pokemonData.name;
+
+    obj.sprite =
+      pokemonData["sprites"]["other"]["official-artwork"]["front_default"];
+
+    obj.types = [];
+    pokemonData.types.forEach((pokeType) => {
+      obj.types.push(pokeType.type.name);
+    });
+
+    console.log(obj);
+    return obj;
   } catch (error) {
-    console.error(error);
+    console.log("Error caught! " + error.message);
+    return null;
   }
 };
 
-//v2
-export const fetchPokemonList = async () => {
+export const fetchPokemonType = async (typeName) => {
   try {
-    const response = await fetch('https://pokeapi.co/api/v2/pokemon/');
+    const response = await fetch(`https://pokeapi.co/api/v2/type/${typeName}`);
 
     if (!response.ok) {
       throw Error(`Fetch failed. ${response.status} ${response.statusText}`);
     }
-    const allPokemonData = await response.json();
-    console.log('here is the data: ', allPokemonData);
+    const pokemonData = await response.json();
+    console.log(pokemonData);
 
-    return allPokemonData;
+    const obj = {};
+
+    console.log(obj);
+    return obj;
   } catch (error) {
-    console.log('Error caught! ' + error.message);
+    console.log("Error caught! " + error.message);
     return null;
   }
 };

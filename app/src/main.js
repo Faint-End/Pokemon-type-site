@@ -1,5 +1,5 @@
 import './style.css';
-import { fetchPokemon } from './fetch-helpers';
+import { fetchPokemon, fetchPokemonType } from './fetch-helpers';
 import { renderSearched } from './render-pokemon';
 
 const pokeList = document.getElementById('poke-list');

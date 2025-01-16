@@ -8,7 +8,6 @@ export const fetchPokemon = async (pokemonName) => {
       throw Error(`Fetch failed. ${response.status} ${response.statusText}`);
     }
     const pokemonData = await response.json();
-    console.log(pokemonData);
 
     const obj = {};
     obj.name = pokemonData.name;
@@ -36,10 +35,23 @@ export const fetchPokemonType = async (typeName) => {
     if (!response.ok) {
       throw Error(`Fetch failed. ${response.status} ${response.statusText}`);
     }
-    const pokemonData = await response.json();
-    console.log(pokemonData);
+    const typeData = await response.json();
 
     const obj = {};
+    obj.name = typeData["name"];
+
+    obj.strengths = [];
+    obj.weaknesses = [];
+
+    typeData["damage_relations"]["double_damage_from"].forEach((x2weak) => {
+      obj.weaknesses.push(x2weak.name);
+    });
+    typeData["damage_relations"]["double_damage_to"].forEach((x2strong) => {
+      obj.strengths.push(x2strong.name);
+    });
+
+    obj.icon =
+      typeData["sprites"]["generation-ix"]["scarlet-violet"]["name_icon"];
 
     console.log(obj);
     return obj;

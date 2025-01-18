@@ -1,4 +1,4 @@
-export const renderSearched = (pokeList, pokemonObj) => {
+export const renderPokemon = (pokeList, pokemonObj) => {
   const li = document.createElement('li');
   const pokeSprite = document.createElement('img');
   pokeSprite.src = pokemonObj.sprite;
@@ -10,5 +10,3 @@ export const renderSearched = (pokeList, pokemonObj) => {
   li.append(pokeSprite, h2);
   pokeList.append(li);
 };
-
-export const renderRandom = () => {};

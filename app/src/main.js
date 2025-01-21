@@ -5,6 +5,7 @@ import {
   fetchPokemonType,
 } from './fetch-helpers';
 import { renderPokemon } from './render-pokemon';
+import { renderPokemonInfo } from "./render-modal";
 
 const pokeList = document.getElementById('poke-list');
 pokeList.style = 'list-style-type: none;';
@@ -19,6 +20,8 @@ let offset = 0;
 const limit = 20;
 
 const main = async () => {
+  const pokeModal = document.getElementById("poke-modal");
+  
   pokeSearch.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -32,6 +35,21 @@ const main = async () => {
     e.target.reset();
   });
 
+  pokeList.addEventListener("click", (e) => {
+    if (!e.target.matches("img")) return;
+
+    pokeModal.showModal();
+
+    fetchPokemonWType(e.target.className).then((pokemon) => {
+      renderPokemonInfo(pokeModal, pokemon);
+    });
+  });
+
+  closeButton.addEventListener("click", (e) => {
+    if (!e.target.matches("button")) return;
+    pokeModal.close();
+  });
+  
   const { results, next, previous } = await fetchAllPokemon(offset, limit);
   pokeList.innerHTML = '';
 

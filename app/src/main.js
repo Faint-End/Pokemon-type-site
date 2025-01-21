@@ -1,17 +1,14 @@
 import './style.css';
-import {
-  fetchAllPokemon,
-  fetchPokemon,
-  fetchPokemonType,
-} from './fetch-helpers';
+import { fetchAllPokemon, fetchPokemon } from './fetch-helpers';
 import { renderPokemon } from './render-pokemon';
-import { renderPokemonInfo } from "./render-modal";
+import { renderPokemonInfo } from './render-modal';
 
+const sectionLi = document.getElementById('lists');
 const pokeList = document.getElementById('poke-list');
 pokeList.style = 'list-style-type: none;';
 const histList = document.getElementById('history');
 histList.style = 'list-style-type: none;';
-const pokeSearch = document.getElementById('pokeSearch');
+const pokeSearch = document.getElementById('poke-search');
 
 const nextButton = document.getElementById('next-pg');
 const previousButton = document.getElementById('previous-pg');
@@ -20,8 +17,8 @@ let offset = 0;
 const limit = 20;
 
 const main = async () => {
-  const pokeModal = document.getElementById("poke-modal");
-  
+  const pokeModal = document.getElementById('poke-modal');
+
   pokeSearch.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -35,21 +32,21 @@ const main = async () => {
     e.target.reset();
   });
 
-  pokeList.addEventListener("click", (e) => {
-    if (!e.target.matches("img")) return;
+  sectionLi.addEventListener('click', (e) => {
+    if (!e.target.matches('img')) return;
 
     pokeModal.showModal();
 
-    fetchPokemonWType(e.target.className).then((pokemon) => {
+    fetchPokemon(e.target.className).then((pokemon) => {
       renderPokemonInfo(pokeModal, pokemon);
     });
   });
 
-  closeButton.addEventListener("click", (e) => {
-    if (!e.target.matches("button")) return;
-    pokeModal.close();
-  });
-  
+  // closeButton.addEventListener('click', (e) => {
+  //   if (!e.target.matches('button')) return;
+  //   pokeModal.close();
+  // });
+
   const { results, next, previous } = await fetchAllPokemon(offset, limit);
   pokeList.innerHTML = '';
 

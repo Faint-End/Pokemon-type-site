@@ -8,61 +8,25 @@ export const fetchPokemonType = async (typeName) => {
     const typeData = await response.json();
 
     const obj = {};
-    obj.name = typeData["name"];
+    obj.name = typeData['name'];
 
     obj.strengths = [];
     obj.weaknesses = [];
 
-    typeData["damage_relations"]["double_damage_from"].forEach((x2weak) => {
+    typeData['damage_relations']['double_damage_from'].forEach((x2weak) => {
       obj.weaknesses.push(x2weak.name);
     });
-    typeData["damage_relations"]["double_damage_to"].forEach((x2strong) => {
+    typeData['damage_relations']['double_damage_to'].forEach((x2strong) => {
       obj.strengths.push(x2strong.name);
     });
 
     obj.icon =
-      typeData["sprites"]["generation-viii"]["sword-shield"]["name_icon"];
+      typeData['sprites']['generation-viii']['sword-shield']['name_icon'];
 
     console.log(obj);
     return obj;
   } catch (error) {
-    console.log("Error caught! " + error.message);
-    return null;
-  }
-};
-
-export const fetchPokemonWType = async (pokemonName) => {
-  try {
-    const response = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
-    );
-
-    if (!response.ok) {
-      throw Error(`Fetch failed. ${response.status} ${response.statusText}`);
-    }
-    const pokemonData = await response.json();
-
-    const obj = {};
-    obj.name = pokemonData.name;
-
-    obj.sprite =
-      pokemonData["sprites"]["other"]["official-artwork"]["front_default"];
-
-    obj.types = [];
-    for (const pokeType of pokemonData.types) {
-      const typeObj = await fetchPokemonType(pokeType.type.name);
-      obj.types.push(typeObj);
-    }
-
-    // pokemonData.types.forEach((pokeType) => {
-    //   const typeObj = await fetchPokemonType(pokeType.type.name);
-    //   obj.types.push(typeObj);
-    // });
-
-    console.log(obj);
-    return obj;
-  } catch (error) {
-    console.log("Error caught! " + error.message);
+    console.log('Error caught! ' + error.message);
     return null;
   }
 };
@@ -79,46 +43,59 @@ export const fetchPokemon = async (pokemonName) => {
     const pokemonData = await response.json();
 
     const obj = {};
-    obj.name = typeData['name'];
+    obj.name = pokemonData.name;
 
-    obj.strengths = [];
-    obj.weaknesses = [];
+    obj.sprite =
+      pokemonData['sprites']['other']['official-artwork']['front_default'];
 
-    typeData['damage_relations']['double_damage_from'].forEach((x2weak) => {
-      obj.weaknesses.push(x2weak.name);
-    });
-    typeData['damage_relations']['double_damage_to'].forEach((x2strong) => {
-      obj.strengths.push(x2strong.name);
-    });
+    obj.types = [];
+    for (const pokeType of pokemonData.types) {
+      const typeObj = await fetchPokemonType(pokeType.type.name);
+      obj.types.push(typeObj);
+    }
 
-    obj.icon =
-      typeData['sprites']['generation-ix']['scarlet-violet']['name_icon'];
+    // pokemonData.types.forEach((pokeType) => {
+    //   const typeObj = await fetchPokemonType(pokeType.type.name);
+    //   obj.types.push(typeObj);
+    // });
 
     console.log(obj);
     return obj;
   } catch (error) {
-    console.log("Error caught! " + error.message);
+    console.log('Error caught! ' + error.message);
     return null;
   }
 };
 
-// export const fetchAllPokemon = async () => {
+// export const fetchPokemon = async (pokemonName) => {
 //   try {
-//     let allPokemon = [];
-//     let url = `https://pokeapi.co/api/v2/pokemon/`;
+//     const response = await fetch(
+//       `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
+//     );
 
-//     while (url) {
-//       const response = await fetch(url);
-
-//       if (!response.ok) {
-//         throw Error(`Fetch failed. ${response.status} ${response.statusText}`);
-//       }
+//     if (!response.ok) {
+//       throw Error(`Fetch failed. ${response.status} ${response.statusText}`);
 //     }
 //     const pokemonData = await response.json();
-//     allPokemon = allPokemon.concat(pokemonData.results);
 
-//     console.log('fetched all pokemon: ', allPokemon);
-//     return allPokemon;
+//     const obj = {};
+//     obj.name = typeData['name'];
+
+//     obj.strengths = [];
+//     obj.weaknesses = [];
+
+//     typeData['damage_relations']['double_damage_from'].forEach((x2weak) => {
+//       obj.weaknesses.push(x2weak.name);
+//     });
+//     typeData['damage_relations']['double_damage_to'].forEach((x2strong) => {
+//       obj.strengths.push(x2strong.name);
+//     });
+
+//     obj.icon =
+//       typeData['sprites']['generation-ix']['scarlet-violet']['name_icon'];
+
+//     console.log(obj);
+//     return obj;
 //   } catch (error) {
 //     console.log('Error caught! ' + error.message);
 //     return null;

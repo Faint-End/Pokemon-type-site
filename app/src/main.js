@@ -1,25 +1,35 @@
-import "./style.css";
-import { fetchPokemon, fetchPokemonWType } from "./fetch-helpers";
-import { renderSearched } from "./render-pokemon";
+import './style.css';
+import {
+  fetchAllPokemon,
+  fetchPokemon,
+  fetchPokemonType,
+} from './fetch-helpers';
+import { renderPokemon } from './render-pokemon';
 import { renderPokemonInfo } from "./render-modal";
 
-const pokeList = document.getElementById("poke-list");
-pokeList.style = "list-style-type: none;";
+const pokeList = document.getElementById('poke-list');
+pokeList.style = 'list-style-type: none;';
+const histList = document.getElementById('history');
+histList.style = 'list-style-type: none;';
+const pokeSearch = document.getElementById('pokeSearch');
 
-const main = () => {
-  const pokeSearch = document.getElementById("poke-search");
+const nextButton = document.getElementById('next-pg');
+const previousButton = document.getElementById('previous-pg');
+
+let offset = 0;
+const limit = 20;
+
+const main = async () => {
   const pokeModal = document.getElementById("poke-modal");
-  const pokeModalContainer = document.getElementById("modal-container");
-  const closeButton = document.getElementById("close-button");
-
-  pokeSearch.addEventListener("submit", (e) => {
+  
+  pokeSearch.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const formData = Object.fromEntries(new FormData(e.target));
     console.log(formData);
 
     fetchPokemon(formData.pokemonName).then((pokemon) => {
-      renderSearched(pokeList, pokemon);
+      renderPokemon(histList, pokemon);
     });
 
     e.target.reset();
@@ -39,6 +49,26 @@ const main = () => {
     if (!e.target.matches("button")) return;
     pokeModal.close();
   });
+  
+  const { results, next, previous } = await fetchAllPokemon(offset, limit);
+  pokeList.innerHTML = '';
+
+  results.forEach((pokemon) => {
+    renderPokemon(pokeList, pokemon);
+  });
+
+  nextButton.disabled = !next;
+  previousButton.disabled = !previous;
 };
 
-main();
+nextButton.addEventListener('click', () => {
+  offset += limit;
+  main();
+});
+
+previousButton.addEventListener('click', () => {
+  offset -= limit;
+  main();
+});
+
+document.addEventListener('DOMContentLoaded', main);

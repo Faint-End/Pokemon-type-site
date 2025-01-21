@@ -21,7 +21,7 @@ export const fetchPokemonType = async (typeName) => {
     });
 
     obj.icon =
-      typeData["sprites"]["generation-ix"]["scarlet-violet"]["name_icon"];
+      typeData["sprites"]["generation-viii"]["sword-shield"]["name_icon"];
 
     console.log(obj);
     return obj;

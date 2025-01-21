@@ -1,0 +1,28 @@
+body {
+  background-color: antiquewhite;
+}
+
+#modal-container {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  pointer-events: none;
+  opacity: 0;
+}
+#modal-container.show {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+#poke-model {
+  display: flex;
+  background-color: #fff;
+  max-width: 100%;
+}

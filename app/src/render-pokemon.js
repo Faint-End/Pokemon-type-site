@@ -3,6 +3,10 @@ import { fetchPokemonType } from "./fetch-helpers";
 export const renderSearched = (pokeList, pokemonObj) => {
   const li = document.createElement("li");
   const pokeSprite = document.createElement("img");
+
+  li.classList = `pokemon`;
+
+  pokeSprite.classList = pokemonObj.name;
   pokeSprite.src = pokemonObj.sprite;
   pokeSprite.alt = `An image of ${pokemonObj.name}`;
 

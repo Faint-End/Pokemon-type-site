@@ -8,27 +8,36 @@
   </head>
   <body>
     <div id="app">
-      <h1>PokeSearch!</h1>
-      <form for="poke-search" action="" id="poke-search">
-        <label for="pokemon-name">Search: </label>
-        <input
-          type="text"
-          id="pokemon-name"
-          placeholder="Who's that Pokemon?"
-          name="pokemonName"
-        />
-        <button>Catch!</button>
-      </form>
-      <div id="buttons">
-        <button id="previous-pg" disabled>Previous</button>
-        <button id="next-pg">Next</button>
+      <div id="fodder">
+        <h1 id="poke-title">PokeSearch!</h1>
+        <form for="poke-search" action="" id="poke-search">
+          <label for="pokemon-name"></label>
+          <input
+            type="text"
+            id="pokemon-name"
+            placeholder="Who's that Pokemon?"
+            name="pokemonName"
+          />
+          <button>Catch!</button>
+        </form>
+        <div id="buttons">
+          <button id="previous-pg" disabled>Prev</button>
+          <button id="next-pg">Next</button>
+        </div>
       </div>
 
       <section for="lists" id="lists">
-        <dialog id="poke-modal"></dialog>
-        <ul id="history"></ul>
+        <ul id="history">
+          <li>empty</li>
+          <li>empty</li>
+          <li>empty</li>
+          <li>empty</li>
+          <li>empty</li>
+          <li>empty</li>
+        </ul>
         <ul id="poke-list"></ul>
       </section>
+      <div id="poke-modal"></div>
       <script type="module" src="./src/main.js"></script>
     </div>
   </body>

@@ -1,79 +1,75 @@
-:root {
-  --color-1: #442288;
-  --color-2: #6ca2ea;
-  --color-5: #eb7d5b;
-  --angle: 0deg;
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 4rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  max-width: 25rem;
+}
+h1:hover {
+  background-color: rgb(235, 235, 3);
+  color: black;
 }
 
-body {
-  /* background-image: url('https://archives.bulbagarden.net/media/upload/9/94/Box_Machine_BDSP.png');
-  background-repeat: no-repeat;
-  background-size: auto 200%; */
-  background: linear-gradient(
-    var(--angle),
-    var(--color-1) 19%,
-    transparent 19%,
-    transparent 20%,
-    var(--color-2) 20%,
-    var(--color-2) 39%,
-    transparent 39%,
-    transparent 40%,
-
-    transparent 80%,
-    var(--color-5) 80%
-  );
-  animation: 10s slide linear infinite;
+form {
+  display: flex;
+  justify-content: center;
+  margin-right: rem;
+}
+form #pokemon-name {
+  background-color: #6ca2ea;
+  color: #fff;
 }
 
 div #buttons {
   display: flex;
-  margin-left: 36rem;
+  margin-left: 40rem;
   margin-top: 6rem;
 }
 
 section {
-  display: flexbox;
-  flex-wrap: wrap;
-  flex-direction: row;
+  display: flex;
+  align-items: center;
 }
 
-#history {
-  display: flex-box;
-  flex-direction: row;
-  background-color: rgba(0, 0, 0, 0.7);
+#history li {
+  display: flex;
+  flex-direction: row-reverse;
+  background-color: rgba(0, 0, 0, 0.6);
   max-height: 100px;
+  border-radius: 8px;
 }
 
 #history img {
   width: 70px;
   height: 70px;
 }
+#history span {
+  font-size: 1.2rem;
+  margin: 25px 0 0;
+  color: #fff;
+}
 
 #poke-list {
   display: grid;
   grid-template-columns: repeat(6, 100px);
   gap: 5px;
-  padding: 0rem;
-  margin-left: 20rem;
-  margin-top: 5rem;
   max-width: 1200px;
 }
 
 #poke-list li {
   text-align: center;
   list-style: none;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
   max-width: 100px;
   max-height: 100px;
+  border-radius: 8px;
 }
 
 #poke-list img {
   width: 70px;
   height: 70px;
-}
-#poke-list h2 {
-  font-size: 1rem;
-  margin: 10px 0 0;
 }
 
 #modal-container {

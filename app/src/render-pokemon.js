@@ -25,9 +25,10 @@ export const renderHistPokemon = (pokeList, pokemonObj) => {
   pokeSprite.src = pokemonObj.sprite;
   pokeSprite.alt = `An image of ${pokemonObj.name}`;
 
-  // const h2 = document.createElement('h2');
-  // h2.textContent = `${pokemonObj.name.toUpperCase()}!!`;
+  const span = document.createElement('span');
+  span.textContent = `${pokemonObj.name.toUpperCase()}`;
+  span.className = 'pokemon-name';
 
-  li.append(pokeSprite);
+  li.append(pokeSprite, span);
   pokeList.prepend(li);
 };

@@ -15,16 +15,16 @@ export const renderPokemonInfo = (modal, pokemonInfoObj) => {
   const weaknessesDiv = document.createElement('div');
   const strengthText = document.createElement('h2');
   const weaknessText = document.createElement('h2');
-  const closeButton = document.createElement('buttton');
+  const closeButton = document.createElement('button');
 
-  pokeName.textContent = pokemonInfoObj.name;
+  pokeName.textContent = pokemonInfoObj.name.toUpperCase();
 
   pokePic.src = pokemonInfoObj.sprite;
   pokePic.alt = `An image of ${pokemonInfoObj.name}`;
 
   let str = '';
   pokemonInfoObj.types.length === 1 ? (str = 'type is') : (str = 'types are');
-  typeText.textContent = `${pokemonInfoObj.name}'s ${str}:`;
+  typeText.textContent = `${pokemonInfoObj.name.toUpperCase()}'s ${str}:`;
   typeStuff.append(typeText);
 
   strengthText.textContent = 'Strengths:';

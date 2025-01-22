@@ -58,5 +58,9 @@ export const renderPokemonInfo = (modal, pokemonInfoObj) => {
   closeButton.textContent = 'X';
   closeButton.id = 'close-button';
 
-  modal.append(pokeName, pokePic, typeStuff, typeChartDiv, closeButton);
+  const cries = document.createElement('audio');
+  cries.src = pokemonInfoObj.cries;
+  cries.controls = true;
+
+  modal.append(pokeName, pokePic, typeStuff, typeChartDiv, closeButton, cries);
 };

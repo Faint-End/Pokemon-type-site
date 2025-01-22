@@ -1,5 +1,79 @@
+:root {
+  --color-1: #442288;
+  --color-2: #6ca2ea;
+  --color-5: #eb7d5b;
+  --angle: 0deg;
+}
+
 body {
-  background-color: antiquewhite;
+  /* background-image: url('https://archives.bulbagarden.net/media/upload/9/94/Box_Machine_BDSP.png');
+  background-repeat: no-repeat;
+  background-size: auto 200%; */
+  background: linear-gradient(
+    var(--angle),
+    var(--color-1) 19%,
+    transparent 19%,
+    transparent 20%,
+    var(--color-2) 20%,
+    var(--color-2) 39%,
+    transparent 39%,
+    transparent 40%,
+
+    transparent 80%,
+    var(--color-5) 80%
+  );
+  animation: 10s slide linear infinite;
+}
+
+div #buttons {
+  display: flex;
+  margin-left: 36rem;
+  margin-top: 6rem;
+}
+
+section {
+  display: flexbox;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+#history {
+  display: flex-box;
+  flex-direction: row;
+  background-color: rgba(0, 0, 0, 0.7);
+  max-height: 100px;
+}
+
+#history img {
+  width: 70px;
+  height: 70px;
+}
+
+#poke-list {
+  display: grid;
+  grid-template-columns: repeat(6, 100px);
+  gap: 5px;
+  padding: 0rem;
+  margin-left: 20rem;
+  margin-top: 5rem;
+  max-width: 1200px;
+}
+
+#poke-list li {
+  text-align: center;
+  list-style: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  max-width: 100px;
+  max-height: 100px;
+}
+
+#poke-list img {
+  width: 70px;
+  height: 70px;
+}
+#poke-list h2 {
+  font-size: 1rem;
+  margin: 10px 0 0;
 }
 
 #modal-container {

@@ -1,6 +1,6 @@
 import './style.css';
-import { fetchAllPokemon, fetchPokemon } from './fetch-helpers';
-import { renderPokemon } from './render-pokemon';
+import { fetchAllPokemon, fetchModalPoke, fetchPokemon } from './fetch-helpers';
+import { renderPokemon, renderHistPokemon } from './render-pokemon';
 import { renderPokemonInfo } from './render-modal';
 
 const sectionLi = document.getElementById('lists');
@@ -14,7 +14,7 @@ const nextButton = document.getElementById('next-pg');
 const previousButton = document.getElementById('previous-pg');
 
 let offset = 0;
-const limit = 20;
+const limit = 30;
 
 const main = async () => {
   const pokeModal = document.getElementById('poke-modal');
@@ -26,7 +26,13 @@ const main = async () => {
     console.log(formData);
 
     fetchPokemon(formData.pokemonName).then((pokemon) => {
-      renderPokemon(histList, pokemon);
+      renderHistPokemon(histList, pokemon);
+      const historyItems = Array.from(histList.children);
+
+      // Remove oldest item if the list has 6 items
+      if (historyItems.length >= 7) {
+        histList.removeChild(historyItems[6]);
+      }
     });
 
     e.target.reset();
@@ -37,7 +43,7 @@ const main = async () => {
 
     pokeModal.showModal();
 
-    fetchPokemon(e.target.className).then((pokemon) => {
+    fetchModalPoke(e.target.className).then((pokemon) => {
       renderPokemonInfo(pokeModal, pokemon);
     });
   });

@@ -12,7 +12,6 @@ const pokeSearch = document.getElementById('poke-search');
 
 const nextButton = document.getElementById('next-pg');
 const previousButton = document.getElementById('previous-pg');
-const closeButton = document.getElementById('close-button');
 
 let offset = 0;
 const limit = 30;
@@ -42,17 +41,12 @@ const main = async () => {
   sectionLi.addEventListener('click', (e) => {
     if (!e.target.matches('img')) return;
 
-    pokeModal.showModal();
+    //pokeModal.showModal();
 
     fetchModalPoke(e.target.className).then((pokemon) => {
       renderPokemonInfo(pokeModal, pokemon);
     });
   });
-  // closeButton.addEventListener('click', (e) => {
-  //   if (!e.target.matches('button')) {
-  //     return pokeModal.close();
-  //   }
-  // });
 
   const { results, next, previous } = await fetchAllPokemon(offset, limit);
   pokeList.innerHTML = '';

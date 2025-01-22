@@ -15,7 +15,6 @@ export const renderPokemonInfo = (modal, pokemonInfoObj) => {
   const weaknessesDiv = document.createElement('div');
   const strengthText = document.createElement('h2');
   const weaknessText = document.createElement('h2');
-  const closeButton = document.createElement('button');
 
   pokeName.textContent = pokemonInfoObj.name.toUpperCase();
 
@@ -24,7 +23,7 @@ export const renderPokemonInfo = (modal, pokemonInfoObj) => {
 
   let str = '';
   pokemonInfoObj.types.length === 1 ? (str = 'type is') : (str = 'types are');
-  typeText.textContent = `${pokemonInfoObj.name.toUpperCase()}'s ${str}:`;
+  typeText.textContent = `${pokemonInfoObj.name}'s ${str}:`;
   typeStuff.append(typeText);
 
   strengthText.textContent = 'Strengths:';
@@ -55,12 +54,9 @@ export const renderPokemonInfo = (modal, pokemonInfoObj) => {
 
   typeChartDiv.append(strengthsDiv, weaknessesDiv);
 
-  closeButton.textContent = 'X';
-  closeButton.id = 'close-button';
-
   const cries = document.createElement('audio');
   cries.src = pokemonInfoObj.cries;
   cries.controls = true;
 
-  modal.append(pokeName, pokePic, typeStuff, typeChartDiv, closeButton, cries);
+  modal.append(pokeName, pokePic, typeStuff, typeChartDiv, cries);
 };

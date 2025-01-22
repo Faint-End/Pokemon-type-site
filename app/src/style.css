@@ -1,41 +1,84 @@
-h1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 4rem;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  max-width: 25rem;
-}
 h1:hover {
   background-color: rgb(235, 235, 3);
   color: black;
 }
-
-form {
-  display: flex;
-  justify-content: center;
-  margin-right: rem;
+body {
+  background-color: rgb(103, 108, 120);
+  margin: 0%;
+  /* background-image: linear-gradient(
+      45deg,
+      transparent 20%,
+      black 25%,
+      transparent 25%
+    ),
+    linear-gradient(-45deg, transparent 20%, black 25%, transparent 25%),
+    linear-gradient(-45deg, transparent 75%, black 81%, transparent 0%);
+  background-size: 30px 30px, 30px 30px; */
+  /* animation: slide 30s infinite; */
 }
-form #pokemon-name {
-  background-color: #6ca2ea;
+
+/* @keyframes slide {
+  100% {
+    background-position: 100% 0;
+  }
+} */
+
+div#app {
+  display: grid;
+  grid-template-rows: 200px 500px;
+  grid-template-columns: 3fr 1fr;
+  grid-template-areas:
+    'fodder modal'
+    'pokemon modal';
+}
+
+div#fodder {
+  grid-area: fodder;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas:
+    'title title'
+    'search buttons';
+}
+
+h1#poke-title {
+  grid-area: title;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-self: start;
+  align-self: start;
+  box-sizing: border-box;
+  border-radius: 0 0 120px 0;
+  width: 60%;
+  margin: 0;
   color: #fff;
 }
 
-div #buttons {
+form#poke-search {
+  grid-area: search;
   display: flex;
-  margin-left: 40rem;
-  margin-top: 6rem;
+  flex-direction: column;
+  justify-content: center;
+}
+
+div#buttons {
+  grid-area: buttons;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 section {
+  grid-area: pokemon;
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 #history li {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   background-color: rgba(0, 0, 0, 0.6);
   max-height: 100px;
   border-radius: 8px;
@@ -56,6 +99,7 @@ section {
   grid-template-columns: repeat(6, 100px);
   gap: 5px;
   max-width: 1200px;
+  padding: 0;
 }
 
 #poke-list li {
@@ -72,27 +116,11 @@ section {
   height: 70px;
 }
 
-#modal-container {
-  background-color: rgba(0, 0, 0, 0.3);
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  pointer-events: none;
-  opacity: 0;
+#poke-list h2 {
+  font-size: 1rem;
+  margin: 10px 0 0;
 }
-#modal-container.show {
-  pointer-events: auto;
-  opacity: 1;
-}
-
-#poke-model {
-  display: flex;
-  background-color: #fff;
-  max-width: 100%;
+div#poke-model {
+  grid-area: modal;
+  display: grid;
 }

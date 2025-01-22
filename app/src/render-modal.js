@@ -23,7 +23,7 @@ export const renderPokemonInfo = (modal, pokemonInfoObj) => {
 
   let str = '';
   pokemonInfoObj.types.length === 1 ? (str = 'type is') : (str = 'types are');
-  typeText.textContent = `${pokemonInfoObj.name}'s ${str}:`;
+  typeText.textContent = `${pokemonInfoObj.name.toUpperCase()}'s ${str}:`;
   typeStuff.append(typeText);
 
   strengthText.textContent = 'Strengths:';

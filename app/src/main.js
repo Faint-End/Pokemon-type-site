@@ -65,31 +65,6 @@ const main = async () => {
   nextButton.disabled = !next;
   previousButton.disabled = !previous;
 
-  searchInput.addEventListener('input', async (event) => {
-    const query = event.target.value.trim().toLowerCase();
-
-    // Clear the current search results
-    pokeList.innerHTML = '';
-
-    if (query.length === 0) {
-      return; // Exit if the input is empty
-    }
-
-    try {
-      // Fetch Pokémon matching the query
-      const pokemon = await fetchPokemon(query);
-
-      if (pokemon) {
-        // Render the search result
-        renderPokemon(pokeList, pokemon);
-
-        // Update the search history
-        updateSearchHistory(pokemon);
-      }
-    } catch (error) {
-      console.error('Error fetching Pokémon:', error);
-    }
-  });
   // // Implementation of search feature
   // const searchInput = document.querySelector('#pokemon-name');
   // const allPokemonCache = await getData(

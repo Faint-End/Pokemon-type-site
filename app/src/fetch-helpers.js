@@ -123,3 +123,16 @@ export const fetchModalPoke = async (pokemonName) => {
     return null;
   }
 };
+
+export const getData = async (url) => {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('error');
+    }
+    const data = response.json();
+    return data;
+  } catch (error) {
+    console.warn(error.message);
+  }
+};

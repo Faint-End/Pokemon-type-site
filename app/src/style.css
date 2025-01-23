@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(103, 108, 120);
+  background-color: rgb(130, 58, 66);
   margin: 0%;
   background-image: linear-gradient(
       45deg,
@@ -59,6 +59,11 @@ form#poke-search {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-right: 10px;
+}
+
+input {
+  color: #fff;
 }
 
 p {
@@ -72,12 +77,30 @@ p {
   width: 100px;
   height: 30%;
 }
+p:hover {
+  background-color: rgb(231, 168, 38);
+}
 
 div#buttons {
   grid-area: buttons;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 78px;
+}
+
+#pokemon-name {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+  width: 100%;
+  height: 30%;
+  margin-left: 40px;
+}
+
+div #sub {
+  display: flex;
+  justify-content: center;
+  margin-left: 80px;
 }
 
 section {

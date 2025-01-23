@@ -1,7 +1,14 @@
 import './style.css';
-import { fetchAllPokemon, fetchModalPoke, fetchPokemon } from './fetch-helpers';
+import {
+  fetchAllPokemon,
+  fetchModalPoke,
+  fetchPokemon,
+  getData,
+} from './fetch-helpers';
 import { renderPokemon, renderHistPokemon } from './render-pokemon';
 import { renderPokemonInfo } from './render-modal';
+import { search } from './search';
+import { getPokemon } from './getPokemon';
 
 const sectionLi = document.getElementById('lists');
 const pokeList = document.getElementById('poke-list');
@@ -57,6 +64,58 @@ const main = async () => {
 
   nextButton.disabled = !next;
   previousButton.disabled = !previous;
+
+  searchInput.addEventListener('input', async (event) => {
+    const query = event.target.value.trim().toLowerCase();
+
+    // Clear the current search results
+    pokeList.innerHTML = '';
+
+    if (query.length === 0) {
+      return; // Exit if the input is empty
+    }
+
+    try {
+      // Fetch Pokémon matching the query
+      const pokemon = await fetchPokemon(query);
+
+      if (pokemon) {
+        // Render the search result
+        renderPokemon(pokeList, pokemon);
+
+        // Update the search history
+        updateSearchHistory(pokemon);
+      }
+    } catch (error) {
+      console.error('Error fetching Pokémon:', error);
+    }
+  });
+  // // Implementation of search feature
+  // const searchInput = document.querySelector('#pokemon-name');
+  // const allPokemonCache = await getData(
+  //   'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=-1'
+  // );
+
+  // let searchMode = true;
+  // let pokemonInformation;
+
+  // searchInput.addEventListener('input', async (event) => {
+  //   pokeList.innerHTML = '';
+  //   searchMode = false;
+  //   let value = event.target.value.trim().toLowerCase();
+
+  //   if (value.length === 0) {
+  //     searchMode = true;
+  //     renderPokemon(pokeList, listObj.pokemonList);
+  //   }
+
+  //   if (value && value.length >= 2) {
+  //     // Searches for the pokemon name in the pokemon name cache
+  //     let searchResults = search(allPokemonCache, value);
+  //     pokemonInformation = await getPokemon(searchResults);
+  //     renderPokemonList(pokemonUl, pokemonInformation.pokemonList);
+  //   }
+  // });
 };
 
 nextButton.addEventListener('click', () => {
